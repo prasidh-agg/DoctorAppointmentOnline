@@ -1,5 +1,7 @@
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,6 +36,7 @@
 	
 	form h2{
 		text-align: center;
+		margin-bottom: 30px;
 	}
 	
 	form label{
@@ -62,6 +65,10 @@
 	form input[type="text"]::placeholder, form input[type="password"]::placeholder{
 		text-align:center;
 	}
+	#error{
+		color: #5DA9E9;
+		margin-top: 0px;
+	}
 	form a{
 		color: #fff;
 		text-align: right;
@@ -69,6 +76,10 @@
 	form a:hover{
 		text-decoration:none;
 	}
+	form input:focus::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  		color: transparent;
+	}
+	
 </style>
 
 </head>
@@ -80,7 +91,12 @@
 		<input type="text" id="uname" name="uname" placeholder="Enter your User Name" autocomplete="off">
 		<label for="upass">Password</label>
 		<input type="password" id="upass" name="upass" placeholder="Enter your Password" autocomplete="off">
-		
+		<%
+			if(null!=request.getAttribute("invalid"))
+		    {
+		        out.println("<p id='error'></p>"+request.getAttribute("invalid"));
+		    }
+		%>
 		<input type="submit" value="Login">
 		<a href="SCREEN2">Register</a>  <!--SCREEN 2 NAME-->
 	</form>
