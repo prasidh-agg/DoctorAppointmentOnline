@@ -85,7 +85,7 @@
 		<a href="SCREEN2">Register</a>  <!--SCREEN 2 NAME-->
 	</form>
 	
-	<form action="SCREEN4" method="post"> <!--SCREEN 4 NAME-->
+	<form action="SCREEN4" method="post"> <!--SCREEN 4 NAME--> <!-- This is a dummy comment -->
 		<h2>Patient's Login</h2>
 		
 		<label for="name">Name</label>
