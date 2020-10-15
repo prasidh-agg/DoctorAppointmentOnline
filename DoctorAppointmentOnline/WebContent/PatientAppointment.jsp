@@ -1,3 +1,11 @@
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.Connection"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,7 +48,7 @@
 		font-size: 1.2rem;
 	}
 	
-	form input{
+	form input, select{
 		margin: 10px 0;
 		border-radius: 5px;
 		border: none;
@@ -75,11 +83,33 @@
 
 </head>
 <body>
+
+	<%
+	    try{
+	    	Class.forName("com.mysql.cj.jdbc.Driver");
+	    	Connection conn= DriverManager.getConnection("jdbc:mysql://localhost:3306/doctorpatient","root","Agg560037KA");
+	    	Statement st= conn.createStatement();
+	    	
+	    	ResultSet rs;
+	    	rs= st.executeQuery("select name from doctor");
+	%>
+		
+	
 	<form action="PatientDoctorNameDate.jsp" method="post">
 		<h2>Book Appointment</h2>
-		
-		<label for="dname">Doctor's name</label>
-		<input type="text" id="dname" name="dname" placeholder="Enter Doctor's Name" autocomplete="off">
+		<label for="dname">Doctor Name</label>
+		<select name="dname" id="dname">
+			<%  while(rs.next()){ %>
+            <option><%= rs.getString(1)%></option>
+        <% } %>
+		</select>
+	<%
+        }
+        catch(Exception e)
+        {
+             out.println("Wrong Entry"+e);
+        }
+	%>		
 		
 		<label for="date">Enter date</label>
 		<input type="date" id="formdate" name="date">

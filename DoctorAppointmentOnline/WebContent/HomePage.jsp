@@ -66,7 +66,7 @@
 	form input[type="text"]::placeholder, form input[type="password"]::placeholder{
 		text-align:center;
 	}
-	#error, #register-success{
+	#error, #register-success, #booked{
 		color: #5DA9E9;
 		margin-top: 0px;
 	}
@@ -101,14 +101,13 @@
 		%>
 		
 		<input type="submit" value="Login">
-		<a href="DoctorRegistration.jsp">Register</a>  <!--SCREEN 2 NAME-->
+		<a href="DoctorRegistration.jsp">Register</a>  
 		<%
 			if(null!=request.getAttribute("success"))
 		    {
 		        out.println("<p id='register-success'></p>"+request.getAttribute("success"));
 		    }
 		%>
-		
 		
 	</form>
 	
@@ -119,6 +118,13 @@
 		<input type="text" id="name" name="name" placeholder="Enter your Name" autocomplete="off" required>
 		<label for="num">Mobile No.</label>
 		<input type="text" id="num" name="num" placeholder="Enter your Number" autocomplete="off" required>
+		
+		<%
+			if(null!=request.getAttribute("booked"))
+		    {
+		        out.println("<p id='booked'></p>"+request.getAttribute("booked"));
+		    }
+		%>
 		
 		<input type="submit" value="Proceed">
 	</form>

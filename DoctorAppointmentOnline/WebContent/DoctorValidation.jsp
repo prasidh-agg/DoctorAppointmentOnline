@@ -16,11 +16,9 @@
 	rs= st.executeQuery("select * from doctor where username='"+userName+"'and password='"+passWord+"'");
 	
 	if(rs.next()){
+		
 		session.setAttribute("username", userName);
-		
-//		ADD NAME FOR SCREEN 3 HERE
-		
-		response.sendRedirect("SCREEN3"); 
+		response.sendRedirect("AppointmentsList.jsp"); 
 	}
 	else{
 		session.invalidate();
