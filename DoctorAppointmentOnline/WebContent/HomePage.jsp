@@ -33,6 +33,7 @@
 		flex-direction: column;
 		font-family: inherit;
 		max-width: 40vw;
+		
 	}
 	
 	form h2{
@@ -122,7 +123,7 @@
 		<%
 			if(null!=request.getAttribute("booked"))
 		    {
-		        out.println("<p id='booked'></p>"+request.getAttribute("booked"));
+		        out.println("<p id='booked'></p>"+request.getAttribute("booked")+request.getAttribute("dname")+".");
 		    }
 		%>
 		

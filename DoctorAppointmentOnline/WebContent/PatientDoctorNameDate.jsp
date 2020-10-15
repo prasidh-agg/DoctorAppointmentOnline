@@ -22,7 +22,8 @@ int i=st.executeUpdate("insert into Patient(doctorname,name,mobilenumber,adate)v
 
 if(i>0){
     session.invalidate();
-	request.setAttribute("booked", "Thanks for booking.");
+	request.setAttribute("booked", "Thanks for booking the appointment with ");
+	request.setAttribute("dname", doctorName);
 	RequestDispatcher rd = request.getRequestDispatcher("/HomePage.jsp");
     rd.forward(request, response);
     }
