@@ -6,6 +6,7 @@ pageEncoding="ISO-8859-1"%>
 
 <%
 String doctorName=request.getParameter("dname");
+
 String ddate=request.getParameter("appdate");
 
 SimpleDateFormat sdf=new SimpleDateFormat("dd/mm/yyyy");
