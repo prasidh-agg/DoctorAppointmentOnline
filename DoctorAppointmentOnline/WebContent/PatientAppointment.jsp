@@ -80,8 +80,8 @@
 		
 		<label for="dname">Doctor's name</label>
 		<input type="text" id="dname" name="dname" placeholder="Enter Doctor's Name" autocomplete="off">
-		<label for="upass">Enter date</label>
-		<input type="text" id="appdate" name="date" placeholder="Enter date as dd/mm/yyyy">
+		<label for="date">Enter date</label>
+		<input type="date" id="formdate" name="date">
 		
 		<input type="submit" value="Book">
 		

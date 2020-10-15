@@ -7,20 +7,20 @@ pageEncoding="ISO-8859-1"%>
 <%
 String doctorName=request.getParameter("dname");
 
-String ddate=request.getParameter("appdate");
+String ddate=request.getParameter("formdate");
+SimpleDateFormat sdf=new SimpleDateFormat("mm/dd/yyyy");
 
-SimpleDateFormat sdf=new SimpleDateFormat("dd/mm/yyyy");
-Date adate=sdf.parse(ddate);
+Date adate= sdf.parse(ddate);
 java.sql.Date sqlDate= new java.sql.Date(adate.getTime());
 
-String patientName= request.getParameter("patientName");
-
+String patientName= session.getAttribute("patientName").toString();
+String patientNumber= session.getAttribute("patientNumber").toString();
 
 Class.forName("com.mysql.jdbc.Driver");
 Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/doctorpatient", "root", "Agg560037KA");
 Statement st=conn.createStatement();
 
-int i=st.executeUpdate("insert into Patient(doctorname,Adate)values('"+doctorName+"','"+sqlDate+"') where name='"+patientName+"'");
+int i=st.executeUpdate("insert into Patient(doctorname,name,mobilenumber,adate)values('"+doctorName+"','"+patientName+"','"+patientNumber+"','"+sqlDate+"')");
 
 if(i>0){
 	session.setAttribute("doctorName", doctorName);
