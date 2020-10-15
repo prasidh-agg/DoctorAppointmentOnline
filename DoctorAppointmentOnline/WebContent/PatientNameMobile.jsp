@@ -9,7 +9,7 @@ String patientNumber=request.getParameter("num");
 
 
 Class.forName("com.mysql.jdbc.Driver");
-Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/doctorpatient", "root", "Gar560037KA");
+Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/doctorpatient", "root", "Agg560037KA");
 Statement st=conn.createStatement();
 
 int i=st.executeUpdate("insert into Patient(name,Mobilenumber)values('"+patientName+"','"+patientNumber+"')");

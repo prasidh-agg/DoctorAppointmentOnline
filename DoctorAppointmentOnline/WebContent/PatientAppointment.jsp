@@ -81,7 +81,7 @@
 		<label for="dname">Doctor's name</label>
 		<input type="text" id="dname" name="dname" placeholder="Enter Doctor's Name" autocomplete="off">
 		<label for="upass">Enter date</label>
-		<input type="date" id="appdate" name="date" min="2018-01-01" max="2021-12-31">
+		<input type="text" id="appdate" name="date" placeholder="Enter date as dd/mm/yyyy">
 		
 		<input type="submit" value="Book">
 		
