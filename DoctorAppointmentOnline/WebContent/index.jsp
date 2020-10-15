@@ -22,6 +22,7 @@
 		display: flex;
 		height: 100vh;
 		align-items: center;
+		justify-content: space-between;
 	}
 	form{
 		background-color: #003F91;
@@ -31,7 +32,7 @@
 		display: flex;
 		flex-direction: column;
 		font-family: inherit;
-		max-width: 600px;
+		max-width: 40vw;
 	}
 	
 	form h2{
