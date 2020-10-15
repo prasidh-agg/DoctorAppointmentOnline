@@ -85,7 +85,7 @@
 
 </head>
 <body>
-	<form action="Login.jsp" method="post">
+	<form action="DoctorValidation.jsp" method="post">
 		<h2>Doctor's Login</h2>
 		
 		<label for="uname">Username</label>
@@ -102,7 +102,7 @@
 		<a href="SCREEN2">Register</a>  <!--SCREEN 2 NAME-->
 	</form>
 	
-	<form action="SCREEN4" method="post"> <!--SCREEN 4 NAME--> <!-- This is a dummy comment -->
+	<form action="PatientNameMobile.jsp" method="post"> 
 		<h2>Patient's Login</h2>
 		
 		<label for="name">Name</label>
