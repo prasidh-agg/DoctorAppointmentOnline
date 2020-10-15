@@ -21,8 +21,10 @@ Statement st=conn.createStatement();
 int i=st.executeUpdate("insert into Patient(doctorname,name,mobilenumber,adate)values('"+doctorName+"','"+patientName+"','"+patientNumber+"','"+sqlDate+"')");
 
 if(i>0){
-	session.setAttribute("doctorName", doctorName);
-	response.sendRedirect("HomePage.jsp"); 
-}
+    session.invalidate();
+	request.setAttribute("booked", "Thanks for booking.");
+	RequestDispatcher rd = request.getRequestDispatcher("/HomePage.jsp");
+    rd.forward(request, response);
+    }
 
 %>
