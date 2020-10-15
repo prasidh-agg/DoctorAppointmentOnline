@@ -9,7 +9,7 @@
 	String passWord= request.getParameter("upass");
 		
 	Class.forName("com.mysql.cj.jdbc.Driver");
-	Connection conn= DriverManager.getConnection("jdbc:mysql://localhost:3306/doctorpatient","root","Gar560037KA");
+	Connection conn= DriverManager.getConnection("jdbc:mysql://localhost:3306/doctorpatient","root","Agg560037KA");
 	Statement st= conn.createStatement();
 	
 	ResultSet rs;

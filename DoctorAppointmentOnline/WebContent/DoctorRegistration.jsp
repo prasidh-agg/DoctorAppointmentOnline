@@ -1,8 +1,10 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Patient Appointment</title>
+<title>Doctor Registration</title>
 
 <style type="text/css">
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500&display=swap');
@@ -59,35 +61,38 @@
 		transition: transform 0.2s;
 		backface-visibility: hidden;
 	}
-	form input[type="text"]::placeholder, form input[type="date"]::placeholder{
+	form input[type="text"]::placeholder, form input[type="password"]::placeholder{
 		text-align:center;
 	}
-	#error{
+	#duplicate{
 		color: #5DA9E9;
 		margin-top: 0px;
 	}
-	
+
 	form input:focus::-webkit-input-placeholder { /* Chrome/Opera/Safari */
   		color: transparent;
 	}
 	
 </style>
-
 </head>
 <body>
-	<form action="PatientDoctorNameDate.jsp" method="post">
-		<h2>Book Appointment</h2>
+	<form action="DoctorRegistrationLogic.jsp" method="post"> 
+		<h2>Doctor's Registration</h2>
 		
-		<label for="dname">Doctor's name</label>
-		<input type="text" id="dname" name="dname" placeholder="Enter Doctor's Name" autocomplete="off">
+		<label for="name">Name</label>
+		<input type="text" id="name" name="name" placeholder="Enter your Name" autocomplete="off" required>
+		<label for="uname">Username</label>
+		<input type="text" id="uname" name="uname" placeholder="Enter your Username" autocomplete="off" required>
+		<label for="uname">Password</label>
+		<input type="password" id="upass" name="upass" placeholder="Enter your Password" autocomplete="off" required>
 		
-		<label for="date">Enter date</label>
-		<input type="date" id="formdate" name="date">
-		
-		<input type="submit" value="Book">
-		
+		<input type="submit" value="Register">
+		<%
+			if(null!=request.getAttribute("duplicate"))
+		    {
+		        out.println("<p id='duplicate'></p>"+request.getAttribute("duplicate"));
+		    }
+		%>
 	</form>
-	
-	
 </body>
 </html>

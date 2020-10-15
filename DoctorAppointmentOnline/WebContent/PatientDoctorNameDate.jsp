@@ -1,17 +1,15 @@
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-pageEncoding="ISO-8859-1"%>
+<%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@page import="java.sql.*,java.util.*"%>
 
 <%
-String doctorName=request.getParameter("dname");
+String doctorName = request.getParameter("dname");
+String getDate = request.getParameter("date");
 
-String ddate=request.getParameter("formdate");
-SimpleDateFormat sdf=new SimpleDateFormat("mm/dd/yyyy");
+Date date=new SimpleDateFormat("yyyy-MM-dd").parse(getDate);
 
-Date adate= sdf.parse(ddate);
-java.sql.Date sqlDate= new java.sql.Date(adate.getTime());
+java.sql.Date sqlDate= new java.sql.Date(date.getTime());
 
 String patientName= session.getAttribute("patientName").toString();
 String patientNumber= session.getAttribute("patientNumber").toString();
@@ -26,6 +24,5 @@ if(i>0){
 	session.setAttribute("doctorName", doctorName);
 	response.sendRedirect("HomePage.jsp"); 
 }
-
 
 %>

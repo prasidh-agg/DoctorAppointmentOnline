@@ -66,7 +66,7 @@
 	form input[type="text"]::placeholder, form input[type="password"]::placeholder{
 		text-align:center;
 	}
-	#error{
+	#error, #register-success{
 		color: #5DA9E9;
 		margin-top: 0px;
 	}
@@ -85,6 +85,7 @@
 
 </head>
 <body>
+	
 	<form action="DoctorValidation.jsp" method="post">
 		<h2>Doctor's Login</h2>
 		
@@ -98,8 +99,17 @@
 		        out.println("<p id='error'></p>"+request.getAttribute("invalid"));
 		    }
 		%>
+		
 		<input type="submit" value="Login">
-		<a href="SCREEN2">Register</a>  <!--SCREEN 2 NAME-->
+		<a href="DoctorRegistration.jsp">Register</a>  <!--SCREEN 2 NAME-->
+		<%
+			if(null!=request.getAttribute("success"))
+		    {
+		        out.println("<p id='register-success'></p>"+request.getAttribute("success"));
+		    }
+		%>
+		
+		
 	</form>
 	
 	<form action="PatientNameMobile.jsp" method="post"> 
