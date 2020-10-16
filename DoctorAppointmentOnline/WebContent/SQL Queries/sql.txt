@@ -1,0 +1,22 @@
+create database DoctorPatient;
+
+use DoctorPatient;
+create table DoctorPatient.doctor(
+		`name` varchar(50),
+        `username` varchar(50),
+        `password` varchar(50),
+        primary key(username)
+        );
+        
+Insert into doctor(name,username, password)
+			values('prasidh','sid',123456);
+			
+select * from doctor;
+
+use doctorpatient;
+create table patient(name varchar(250),
+					mobilenumber bigint, 
+					doctorname varchar(250),
+					Adate date)
+
+select * from patient
