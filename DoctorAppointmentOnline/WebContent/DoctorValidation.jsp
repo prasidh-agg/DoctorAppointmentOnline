@@ -7,13 +7,14 @@
 <%	
 	String userName= request.getParameter("uname");
 	String passWord= request.getParameter("upass");
-		
+	String pass = passWord;
+	
 	Class.forName("com.mysql.cj.jdbc.Driver");
 	Connection conn= DriverManager.getConnection("jdbc:mysql://localhost:3306/doctorpatient","root","Agg560037KA");
 	Statement st= conn.createStatement();
 	
 	ResultSet rs;
-	rs= st.executeQuery("select * from doctor where username='"+userName+"'and password='"+passWord+"'");
+	rs= st.executeQuery("select * from doctor where username='"+userName+"'and password='"+pass+"'");
 	
 	if(rs.next()){
 		
@@ -26,4 +27,6 @@
         RequestDispatcher rd = request.getRequestDispatcher("/HomePage.jsp");
         rd.forward(request, response);
 	}
+	rs.close();
+	conn.close();
 %>

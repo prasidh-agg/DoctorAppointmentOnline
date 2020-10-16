@@ -14,7 +14,7 @@ java.sql.Date sqlDate= new java.sql.Date(date.getTime());
 String patientName= session.getAttribute("patientName").toString();
 String patientNumber= session.getAttribute("patientNumber").toString();
 
-Class.forName("com.mysql.jdbc.Driver");
+Class.forName("com.mysql.cj.jdbc.Driver");
 Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/doctorpatient", "root", "Agg560037KA");
 Statement st=conn.createStatement();
 
