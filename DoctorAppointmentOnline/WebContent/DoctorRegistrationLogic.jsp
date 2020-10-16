@@ -23,7 +23,8 @@
 		int i=st.executeUpdate("insert into Doctor(name,username,password)values('"+name+"','"+userName+"','"+passWord+"')");
 
 		if(i>0){
-			request.setAttribute("success", "Thanks for registering.");
+			request.setAttribute("success", "Thanks for registering ");
+			request.setAttribute("dname", name);
 			RequestDispatcher rd = request.getRequestDispatcher("/HomePage.jsp");
 	        rd.forward(request, response);
 		}
