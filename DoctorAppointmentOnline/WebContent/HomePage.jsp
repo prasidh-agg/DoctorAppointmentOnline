@@ -113,7 +113,7 @@
 	</form>
 	
 	<form action="PatientNameMobile.jsp" method="post"> 
-		<h2>Patient's Login</h2>
+		<h2>Patient's Booking</h2>
 		
 		<label for="name">Name</label>
 		<input type="text" id="name" name="name" placeholder="Enter your Name" autocomplete="off" required>

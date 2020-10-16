@@ -1,3 +1,6 @@
+<%@page import="java.time.LocalDateTime"%>
+<%@page import="java.time.format.DateTimeFormatter"%>
+<%@page import="java.text.DateFormat"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.sql.ResultSet"%>
@@ -11,6 +14,20 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Appointments List</title>
+
+<script>
+	window.onload = function(){
+	    defaultDate()
+	};
+	
+	function defaultDate()
+	{
+	console.log("load event detected!");
+	var today = new Date();
+	document.getElementById("appdate").value = [ today.getFullYear(), today.getMonth()+1, today.getDate(),].join('-');
+	}
+</script>
+
 
 <style type="text/css">
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500&display=swap');
@@ -92,7 +109,7 @@
 			<h1>Appointment List</h1>
 			<a href="HomePage.jsp">Logout</a>
 		</div>
-		<form action="AppointmentsList.jsp" method="post">
+		<form action="AppointmentsList.jsp" method="post" id="date-form" name="date-form">
 			<input type="date" name="appdate" id="appdate">
 			<input type="submit" value="Search">
 		</form>
@@ -105,12 +122,9 @@
 			</tr>
 	<%
 	try{
+		
 		String getDate = request.getParameter("appdate");
-		Date date=new SimpleDateFormat("yyyy-MM-dd").parse(getDate);
-		java.sql.Date sqlDate= new java.sql.Date(date.getTime());
-		
 		String userName= session.getAttribute("username").toString();
-		
 		
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection conn= DriverManager.getConnection("jdbc:mysql://localhost:3306/doctorpatient","root","Agg560037KA");
@@ -118,10 +132,33 @@
 		
 		ResultSet rs;
 		rs=st.executeQuery("select name from doctor where username='"+userName+"'");
+		
 		while(rs.next()){
 			String dname= rs.getString("name");
 			ResultSet rs2;
-			rs2=st.executeQuery("select * from patient where doctorname='"+dname+"' and adate='"+sqlDate+"'");
+			rs.close();
+			
+			//check if getDate is null or if form hasnt been submitted yet.
+			if(getDate==null){
+				
+				//get string of current date
+				DateTimeFormatter.ofPattern("yyyy-MM-dd");
+				LocalDateTime now = LocalDateTime.now();
+				String formattedDate = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+				
+				//convert current date from java to sql
+				Date date2=new SimpleDateFormat("yyyy-MM-dd").parse(formattedDate);
+				java.sql.Date defDate= new java.sql.Date(date2.getTime());
+				
+				//execute query for current date
+				rs2=st.executeQuery("select * from patient where doctorname='"+dname+"' and adate='"+defDate+"'");
+			}
+			else{
+				Date date=new SimpleDateFormat("yyyy-MM-dd").parse(getDate);
+				java.sql.Date sqlDate= new java.sql.Date(date.getTime());
+				rs2=st.executeQuery("select * from patient where doctorname='"+dname+"' and adate='"+sqlDate+"'");
+			}
+			
 			while(rs2.next()){
 			%>
 				<tr>
@@ -132,19 +169,19 @@
 			<%
 			}
 			conn.close();
-		
-	}
+			rs2.close();
+			rs.close();	
+		}
 	}
 		catch (Exception e) {
-			e.printStackTrace();
+			return;
 			}
 			%>
-		
-		
-		
 	
 </table>	
 </body>
+
+
 </html>
 
 
