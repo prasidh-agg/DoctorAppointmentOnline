@@ -106,7 +106,7 @@
 		<%
 			if(null!=request.getAttribute("success"))
 		    {
-		        out.println("<p id='register-success'></p>"+request.getAttribute("success"));
+		        out.println("<p id='register-success'></p>"+request.getAttribute("success")+request.getAttribute("dname")+".");
 		    }
 		%>
 		
