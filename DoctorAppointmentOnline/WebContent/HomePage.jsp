@@ -15,7 +15,13 @@
 		box-sizing: border-box;
 		font-family: 'Ubuntu', sans-serif;
 	}
-	
+	h1{
+		position: fixed;
+		top:20px;
+		left: 0;right:0;
+		text-align: center;
+		z-index: 1;
+	}
 	body{
 		background-color: #5DA9E9;
 		color: #fff;
@@ -64,7 +70,7 @@
 		transition: transform 0.2s;
 		backface-visibility: hidden;
 	}
-	form input[type="text"]::placeholder, form input[type="password"]::placeholder{
+	form input[type="text"]::placeholder, form input[type="password"]::placeholder, form input[type="tel"]::placeholder{
 		text-align:center;
 	}
 	#error, #register-success, #booked{
@@ -86,7 +92,7 @@
 
 </head>
 <body>
-	
+	<h1>Doctor Appointment Booking System</h1>
 <!-- 	Form for doctor's login -->
 
 	<form action="DoctorValidation.jsp" method="post">
@@ -125,7 +131,7 @@
 		<label for="name">Name</label>
 		<input type="text" id="name" name="name" placeholder="Enter your Name" autocomplete="off" required>
 		<label for="num">Mobile No.</label>
-		<input type="text" id="num" name="num" placeholder="Enter your Number" autocomplete="off" required>
+		<input type="tel" id="num" name="num" placeholder="Enter your Number" autocomplete="off" required pattern="^\d{10}$">
 		
 <!-- 		Append the Appointment booked Message -->
 		<%
