@@ -80,21 +80,24 @@
 	}
 	
 </style>
-
 </head>
 <body>
-
 <!-- The connection to the database is created to get the list of doctors. -->
 	<%
+// 		Start Mysql database connection and statement creater
 	    try{
 	    	Class.forName("com.mysql.cj.jdbc.Driver");
-	    	Connection conn= DriverManager.getConnection("jdbc:mysql://localhost:3306/doctorpatient","root","password");
-	    	Statement st= conn.createStatement();
 	    	
+// 	    	Enter your own SQL password here
+	    	Connection conn= DriverManager.getConnection("jdbc:mysql://localhost:3306/doctorpatient","root","SQL PASSWORD");
+	    	Statement st= conn.createStatement();
+	    
+// 	    	Create a result set to retrieve data
 	    	ResultSet rs;
 	    	rs= st.executeQuery("select name from doctor");
 	%>
 		
+
 <!-- This form is created for the patient to book the appointment. The fields to be selected
 include doctor name and date. -->
 	<form action="PatientDoctorNameDate.jsp" method="post">
@@ -112,14 +115,9 @@ include doctor name and date. -->
              out.println("Wrong Entry"+e);
         }
 	%>		
-		
 		<label for="date">Enter date</label>
 		<input type="date" id="formdate" name="date">
-		
 		<input type="submit" value="Book">
-		
 	</form>
-	
-	
 </body>
 </html>

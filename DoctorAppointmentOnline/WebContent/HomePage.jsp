@@ -91,6 +91,7 @@
 	are then verified and the doctor is redirected to check the appointments. A registration
 	link is created for the doctor, if the doctor is not previously registered. -->
 
+
 		<form action="DoctorValidation.jsp" method="post">
 			<h2>Doctor's Login</h2>
 			
@@ -136,6 +137,7 @@
 			
 			<input type="submit" value="Proceed">
 		</form>
-		
-	</body>
+
+</head>
+</body>
 </html>
