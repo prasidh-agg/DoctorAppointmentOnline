@@ -15,6 +15,7 @@
 <meta charset="ISO-8859-1">
 <title>Appointments List</title>
 
+<!-- Create a function to display current date as default -->
 <script>
 	window.onload = function(){
 	    defaultDate()
@@ -109,12 +110,15 @@
 			<h1>Appointment List</h1>
 			<a href="HomePage.jsp">Logout</a>
 		</div>
+		
+<!-- 		Ask doctor to submit date for which to seek appointments -->
 		<form action="AppointmentsList.jsp" method="post" id="date-form" name="date-form">
 			<input type="date" name="appdate" id="appdate">
 			<input type="submit" value="Search">
 		</form>
 		
 		<table>
+<!-- 		Display all the patient details  from the patient table in the MySql database -->
 			<tr>
 				<td class="header">Patient Name</td>
 				<td class="header">Contact No.</td>
@@ -126,19 +130,24 @@
 		String getDate = request.getParameter("appdate");
 		String userName= session.getAttribute("username").toString();
 		
+// 		Create a database connection and form a statement
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection conn= DriverManager.getConnection("jdbc:mysql://localhost:3306/doctorpatient","root","Agg560037KA");
 		Statement st= conn.createStatement();
 		
+// 		Create a result  set and retrieve data from the database
 		ResultSet rs;
+
+// 		Get the name of the doctor who is in the current session
 		rs=st.executeQuery("select name from doctor where username='"+userName+"'");
+
 		
 		while(rs.next()){
 			String dname= rs.getString("name");
 			ResultSet rs2;
 			rs.close();
 			
-			//check if getDate is null or if form hasnt been submitted yet.
+// 		check if getDate is null or if form hasnt been submitted yet.
 			if(getDate==null){
 				
 				//get string of current date
@@ -153,12 +162,15 @@
 				//execute query for current date
 				rs2=st.executeQuery("select * from patient where doctorname='"+dname+"' and adate='"+defDate+"'");
 			}
+
+// 			If date is coming from form submission, then parse that date instead of default date
 			else{
 				Date date=new SimpleDateFormat("yyyy-MM-dd").parse(getDate);
 				java.sql.Date sqlDate= new java.sql.Date(date.getTime());
 				rs2=st.executeQuery("select * from patient where doctorname='"+dname+"' and adate='"+sqlDate+"'");
 			}
 			
+// 			Display appointment data for the particular date
 			while(rs2.next()){
 			%>
 				<tr>
@@ -168,6 +180,8 @@
 				</tr>
 			<%
 			}
+
+// 			Close  all the result sets and the database Connection
 			conn.close();
 			rs2.close();
 			rs.close();	
@@ -177,11 +191,8 @@
 			return;
 			}
 			%>
-	
 </table>	
 </body>
-
-
 </html>
 
 

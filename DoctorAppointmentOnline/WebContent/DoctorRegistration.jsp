@@ -76,17 +76,23 @@
 </style>
 </head>
 <body>
+
+<!-- 	Create form for doctor registrations -->
 	<form action="DoctorRegistrationLogic.jsp" method="post"> 
 		<h2>Doctor's Registration</h2>
 		
 		<label for="name">Name</label>
 		<input type="text" id="name" name="name" placeholder="Enter your Name" autocomplete="off" required>
+		
 		<label for="uname">Username</label>
 		<input type="text" id="uname" name="uname" placeholder="Enter your Username" autocomplete="off" required>
+		
 		<label for="uname">Password</label>
 		<input type="password" id="upass" name="upass" placeholder="Enter your Password" autocomplete="off" required>
 		
 		<input type="submit" value="Register">
+		
+<!-- 		If same username is entered then display message for duplicate -->
 		<%
 			if(null!=request.getAttribute("duplicate"))
 		    {
