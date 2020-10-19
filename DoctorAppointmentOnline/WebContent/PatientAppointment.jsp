@@ -84,17 +84,19 @@
 </head>
 <body>
 
+<!-- The connection to the database is created to get the list of doctors. -->
 	<%
 	    try{
 	    	Class.forName("com.mysql.cj.jdbc.Driver");
-	    	Connection conn= DriverManager.getConnection("jdbc:mysql://localhost:3306/doctorpatient","root","Agg560037KA");
+	    	Connection conn= DriverManager.getConnection("jdbc:mysql://localhost:3306/doctorpatient","root","password");
 	    	Statement st= conn.createStatement();
 	    	
 	    	ResultSet rs;
 	    	rs= st.executeQuery("select name from doctor");
 	%>
 		
-	
+<!-- This form is created for the patient to book the appointment. The fields to be selected
+include doctor name and date. -->
 	<form action="PatientDoctorNameDate.jsp" method="post">
 		<h2>Book Appointment</h2>
 		<label for="dname">Doctor Name</label>
