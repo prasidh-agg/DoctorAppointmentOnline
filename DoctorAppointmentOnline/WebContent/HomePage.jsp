@@ -21,6 +21,7 @@
 		left: 0;right:0;
 		text-align: center;
 		z-index: 1;
+		margin:0;
 	}
 	body{
 		background-color: #5DA9E9;
@@ -34,7 +35,7 @@
 		background-color: #003F91;
 		border-radius: 10px;
 		padding: 50px;
-		margin: auto;
+		margin:auto; 
 		display: flex;
 		flex-direction: column;
 		font-family: inherit;
@@ -131,7 +132,7 @@
 		<label for="name">Name</label>
 		<input type="text" id="name" name="name" placeholder="Enter your Name" autocomplete="off" required>
 		<label for="num">Mobile No.</label>
-		<input type="tel" id="num" name="num" placeholder="Enter your Number" autocomplete="off" required pattern="^\d{10}$">
+		<input type="tel" id="num" name="num" placeholder="Enter your Number" autocomplete="off" required pattern="^\d{10}$" oninvalid="this.setCustomValidity('Enter Mobile Number')" oninput="this.setCustomVisibility('')">
 		
 <!-- 		Append the Appointment booked Message -->
 		<%
