@@ -1,4 +1,7 @@
-<!-- This page will implement the logic for logging-in, an already registered doctor On Screen 2-->
+<!-- After the doctor enters the credentials for registration, a connection is created 
+to the database. If the username already exists, a notification is displayed saying
+ 'Username already exists' else the details are successfully saved and the notification saying
+ 'Thanks for registering' is displayed.-->
 
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
@@ -16,6 +19,7 @@
 
 //	Enter your own SQL workbench Password here
 	Connection conn= DriverManager.getConnection("jdbc:mysql://localhost:3306/doctorpatient","root","SQL PASSWORD HERE");
+
 	Statement st= conn.createStatement();
 	
 // 	Get the count of the doctors with the same username
@@ -27,7 +31,7 @@
 	
 // 	If the count is 0 then register the doctor
 	if(Countrow.equals("0")){
-		int i=st.executeUpdate("insert into Doctor(name,username,password)values('"+name+"','"+userName+"','"+passWord+"')");
+		int i=st.executeUpdate("insert into Doctor(name,username,password values('"+name+"','"+userName+"','"+passWord+"')");
 
 		if(i>0){
 			request.setAttribute("success", "Thanks for registering ");

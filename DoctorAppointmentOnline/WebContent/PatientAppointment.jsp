@@ -82,6 +82,7 @@
 </style>
 </head>
 <body>
+<!-- The connection to the database is created to get the list of doctors. -->
 	<%
 // 		Start Mysql database connection and statement creater
 	    try{
@@ -96,7 +97,9 @@
 	    	rs= st.executeQuery("select name from doctor");
 	%>
 		
-<!-- 	Create a form including dropdown of the doctor name and date -->
+
+<!-- This form is created for the patient to book the appointment. The fields to be selected
+include doctor name and date. -->
 	<form action="PatientDoctorNameDate.jsp" method="post">
 		<h2>Book Appointment</h2>
 		<label for="dname">Doctor Name</label>
