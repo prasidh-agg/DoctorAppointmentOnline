@@ -1,3 +1,6 @@
+<!-- The details mentioned by the patient to book the appointment are entered to
+the database. -->
+
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
@@ -21,7 +24,10 @@ String patientNumber= session.getAttribute("patientNumber").toString();
 
 // Start the database  local connection
 Class.forName("com.mysql.cj.jdbc.Driver");
-Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/doctorpatient", "root", "Agg560037KA");
+
+// Enter your own SQL workbench Password here
+Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/doctorpatient", "root", "SQL PASSWORD HERE");
+
 Statement st=conn.createStatement();
 
 // Insert the doctor into the doctor table with the entered details

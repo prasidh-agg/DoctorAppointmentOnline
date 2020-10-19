@@ -74,7 +74,9 @@
 	}
 	
 </style>
+
 </head>
+
 <body>
 
 <!-- 	Create form for doctor registrations -->

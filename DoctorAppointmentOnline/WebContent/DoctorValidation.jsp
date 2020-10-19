@@ -1,4 +1,6 @@
-<!-- This page will implement the logic for logging-in, an already registered doctor On Screen 2-->
+<!-- After the doctor enters the credentials, the credentials are verified
+by connecting to the database. If the credentials are correct, the doctor is redirected 
+to the appointment list, otherwise, the doctor gets a notification of 'Invalid Credentials' -->
 
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
@@ -13,7 +15,10 @@
 	
 // 	Start a connection and statement for the Mysql database
 	Class.forName("com.mysql.cj.jdbc.Driver");
-	Connection conn= DriverManager.getConnection("jdbc:mysql://localhost:3306/doctorpatient","root","Agg560037KA");
+		
+//	Enter your own SQL workbench Password here
+	Connection conn= DriverManager.getConnection("jdbc:mysql://localhost:3306/doctorpatient","root","SQL PASSWORD HERE");
+
 	Statement st= conn.createStatement();
 	
 // 	Create a result set

@@ -15,7 +15,9 @@
 <meta charset="ISO-8859-1">
 <title>Appointments List</title>
 
-<!-- Create a function to display current date as default -->
+
+<!-- The default date on the appointment screen is set to the current date. -->
+
 <script>
 	window.onload = function(){
 	    defaultDate()
@@ -104,6 +106,9 @@
 	}
 </style>
 
+<!-- The doctor is provided with an option to view the appointments for a particular date.
+After the selecting the date, a connection to the database is created in order to get all the 
+appointments for the particular date. -->
 </head>
 	<body>
 		<div id="head">
@@ -132,7 +137,10 @@
 		
 // 		Create a database connection and form a statement
 		Class.forName("com.mysql.cj.jdbc.Driver");
-		Connection conn= DriverManager.getConnection("jdbc:mysql://localhost:3306/doctorpatient","root","Agg560037KA");
+
+// 		Enter your own SQL workbench Password here
+		Connection conn= DriverManager.getConnection("jdbc:mysql://localhost:3306/doctorpatient","root","ENTER SQL PASSWORD HERE");
+
 		Statement st= conn.createStatement();
 		
 // 		Create a result  set and retrieve data from the database
@@ -141,7 +149,6 @@
 // 		Get the name of the doctor who is in the current session
 		rs=st.executeQuery("select name from doctor where username='"+userName+"'");
 
-		
 		while(rs.next()){
 			String dname= rs.getString("name");
 			ResultSet rs2;
@@ -191,6 +198,7 @@
 			return;
 			}
 			%>
+
 </table>	
 </body>
 </html>
