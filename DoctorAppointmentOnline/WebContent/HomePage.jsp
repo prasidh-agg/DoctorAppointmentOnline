@@ -87,6 +87,8 @@
 </head>
 <body>
 	
+<!-- 	Form for doctor's login -->
+
 	<form action="DoctorValidation.jsp" method="post">
 		<h2>Doctor's Login</h2>
 		
@@ -94,6 +96,8 @@
 		<input type="text" id="uname" name="uname" placeholder="Enter your User Name" autocomplete="off">
 		<label for="upass">Password</label>
 		<input type="password" id="upass" name="upass" placeholder="Enter your Password" autocomplete="off">
+		
+<!-- 		Append Invalid credentials message. -->
 		<%
 			if(null!=request.getAttribute("invalid"))
 		    {
@@ -102,7 +106,9 @@
 		%>
 		
 		<input type="submit" value="Login">
-		<a href="DoctorRegistration.jsp">Register</a>  
+		<a href="DoctorRegistration.jsp">Register</a>
+		
+<!-- 		Append Successfully registered message   -->
 		<%
 			if(null!=request.getAttribute("success"))
 		    {
@@ -112,6 +118,7 @@
 		
 	</form>
 	
+<!-- 	Form for Patient Booking -->
 	<form action="PatientNameMobile.jsp" method="post"> 
 		<h2>Patient's Booking</h2>
 		
@@ -120,6 +127,7 @@
 		<label for="num">Mobile No.</label>
 		<input type="text" id="num" name="num" placeholder="Enter your Number" autocomplete="off" required>
 		
+<!-- 		Append the Appointment booked Message -->
 		<%
 			if(null!=request.getAttribute("booked"))
 		    {

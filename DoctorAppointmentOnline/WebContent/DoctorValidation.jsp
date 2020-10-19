@@ -5,28 +5,39 @@
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Connection"%>
 <%	
+
+// 	Get username and password of the doctor for validation
 	String userName= request.getParameter("uname");
 	String passWord= request.getParameter("upass");
 	String pass = passWord;
 	
+// 	Start a connection and statement for the Mysql database
 	Class.forName("com.mysql.cj.jdbc.Driver");
-	Connection conn= DriverManager.getConnection("jdbc:mysql://localhost:3306/doctorpatient","root","Agg560037KA");
+		
+//	Enter your own SQL workbench Password here
+	Connection conn= DriverManager.getConnection("jdbc:mysql://localhost:3306/doctorpatient","root","SQL PASSWORD HERE");
 	Statement st= conn.createStatement();
 	
+// 	Create a result set
 	ResultSet rs;
 	rs= st.executeQuery("select * from doctor where username='"+userName+"'and password='"+pass+"'");
 	
+// 	If credentials are valid, redirect to Appointment List page.
 	if(rs.next()){
 		
 		session.setAttribute("username", userName);
 		response.sendRedirect("AppointmentsList.jsp"); 
 	}
+
+// 	If invalid credentials then redirect back to home page.
 	else{
 		session.invalidate();
         request.setAttribute("invalid", "Invalid Credentials");
         RequestDispatcher rd = request.getRequestDispatcher("/HomePage.jsp");
         rd.forward(request, response);
 	}
+	
+// 	Close the result set and the connection
 	rs.close();
 	conn.close();
 %>

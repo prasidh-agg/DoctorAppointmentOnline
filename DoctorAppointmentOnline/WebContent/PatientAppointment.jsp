@@ -80,21 +80,23 @@
 	}
 	
 </style>
-
 </head>
 <body>
-
 	<%
+// 		Start Mysql database connection and statement creater
 	    try{
 	    	Class.forName("com.mysql.cj.jdbc.Driver");
-	    	Connection conn= DriverManager.getConnection("jdbc:mysql://localhost:3306/doctorpatient","root","Agg560037KA");
-	    	Statement st= conn.createStatement();
 	    	
+// 	    	Enter your own SQL password here
+	    	Connection conn= DriverManager.getConnection("jdbc:mysql://localhost:3306/doctorpatient","root","SQL PASSWORD");
+	    	Statement st= conn.createStatement();
+	    
+// 	    	Create a result set to retrieve data
 	    	ResultSet rs;
 	    	rs= st.executeQuery("select name from doctor");
 	%>
 		
-	
+<!-- 	Create a form including dropdown of the doctor name and date -->
 	<form action="PatientDoctorNameDate.jsp" method="post">
 		<h2>Book Appointment</h2>
 		<label for="dname">Doctor Name</label>
@@ -110,14 +112,9 @@
              out.println("Wrong Entry"+e);
         }
 	%>		
-		
 		<label for="date">Enter date</label>
 		<input type="date" id="formdate" name="date">
-		
 		<input type="submit" value="Book">
-		
 	</form>
-	
-	
 </body>
 </html>

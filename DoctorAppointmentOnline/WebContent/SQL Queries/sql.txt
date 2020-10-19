@@ -7,9 +7,6 @@ create table DoctorPatient.doctor(
         `password` varchar(50),
         primary key(username)
         );
-        
-Insert into doctor(name,username, password)
-			values('prasidh','sid',123456);
 			
 select * from doctor;
 
