@@ -86,7 +86,9 @@
 // 		Start Mysql database connection and statement creater
 	    try{
 	    	Class.forName("com.mysql.cj.jdbc.Driver");
-	    	Connection conn= DriverManager.getConnection("jdbc:mysql://localhost:3306/doctorpatient","root","Agg560037KA");
+	    	
+// 	    	Enter your own SQL password here
+	    	Connection conn= DriverManager.getConnection("jdbc:mysql://localhost:3306/doctorpatient","root","SQL PASSWORD");
 	    	Statement st= conn.createStatement();
 	    
 // 	    	Create a result set to retrieve data

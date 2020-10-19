@@ -13,7 +13,9 @@
 	
 // 	Start a connection and statement for the Mysql database
 	Class.forName("com.mysql.cj.jdbc.Driver");
-	Connection conn= DriverManager.getConnection("jdbc:mysql://localhost:3306/doctorpatient","root","Agg560037KA");
+		
+//	Enter your own SQL workbench Password here
+	Connection conn= DriverManager.getConnection("jdbc:mysql://localhost:3306/doctorpatient","root","SQL PASSWORD HERE");
 	Statement st= conn.createStatement();
 	
 // 	Create a result set
