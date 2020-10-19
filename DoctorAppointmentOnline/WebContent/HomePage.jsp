@@ -4,12 +4,14 @@
     
 <!DOCTYPE html>
 <html>
+
 	<head>
 	<meta charset="ISO-8859-1">
 	<title>HomePage</title>
 	
 	<style type="text/css">
 		@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500&display=swap');
+
 		
 			*{
 				box-sizing: border-box;
@@ -21,6 +23,7 @@
 				left: 0;right:0;
 				text-align: center;
 				z-index: 1;
+        margin: 0;
 			}
 			
 			body{
@@ -94,57 +97,90 @@
 	
 	<body>
 	
-	<!--Through this form, the already registered doctor enters the credentials to login. The credentials
-	are then verified and the doctor is redirected to check the appointments. A registration
-	link is created for the doctor, if the doctor is not previously registered. -->
-
-		<h1>Doctor Appointment Booking System</h1>
-		<form action="DoctorValidation.jsp" method="post">
-			<h2>Doctor's Login</h2>
-			
-			<label for="uname">Username</label>
-			<input type="text" id="uname" name="uname" placeholder="Enter your User Name" autocomplete="off">
-			<label for="upass">Password</label>
-			<input type="password" id="upass" name="upass" placeholder="Enter your Password" autocomplete="off">
-			<%
-				if(null!=request.getAttribute("invalid"))
-			    {
-			        out.println("<p id='error'></p>"+request.getAttribute("invalid"));
-			    }
-			%>
-			
-			<input type="submit" value="Login">
-			<a href="DoctorRegistration.jsp">Register</a>  
-			<%
-				if(null!=request.getAttribute("success"))
-			    {
-			        out.println("<p id='register-success'></p>"+request.getAttribute("success")+request.getAttribute("dname")+".");
-			    }
-			%>
-			
-		</form>
-		
-	<!-- Through this form, the patient is able login and then is redirected to the page
-	to book appointments. -->		
-
-		<form action="PatientNameMobile.jsp" method="post"> 
-			<h2>Patient's Booking</h2>
-			
-			<label for="name">Name</label>
-			<input type="text" id="name" name="name" placeholder="Enter your Name" autocomplete="off" required>
-			<label for="num">Mobile No.</label>
-			<input type="tel" id="num" name="num" placeholder="Enter your Number" autocomplete="off" required pattern="^\d{10}$">
-			
-			<%
-				if(null!=request.getAttribute("booked"))
-			    {
-			        out.println("<p id='booked'></p>"+request.getAttribute("booked")+request.getAttribute("dname")+".");
-			    }
-			%>
-			
-			<input type="submit" value="Proceed">
-		</form>
+	form input:focus{
+		outline-color: #6D326D;
+	}
+	form input[type="submit"]{
+		background-color: #6D326D;
+		color: #fff;
+	}
+	form input[type="submit"]:hover{
+		transform: scale(1.06);
+		transition: transform 0.2s;
+		backface-visibility: hidden;
+	}
+	form input[type="text"]::placeholder, form input[type="password"]::placeholder, form input[type="tel"]::placeholder{
+		text-align:center;
+	}
+	#error, #register-success, #booked{
+		color: #5DA9E9;
+		margin-top: 0px;
+	}
+	form a{
+		color: #fff;
+		text-align: right;
+	}
+	form a:hover{
+		text-decoration:none;
+	}
+	form input:focus::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  		color: transparent;
+	}
+	
+</style>
 
 </head>
+<body>
+	<h1>Doctor Appointment Booking System</h1>
+<!-- 	Form for doctor's login -->
+
+	<form action="DoctorValidation.jsp" method="post">
+		<h2>Doctor's Login</h2>
+		
+		<label for="uname">Username</label>
+		<input type="text" id="uname" name="uname" placeholder="Enter your User Name" autocomplete="off">
+		<label for="upass">Password</label>
+		<input type="password" id="upass" name="upass" placeholder="Enter your Password" autocomplete="off">
+		
+<!-- 		Append Invalid credentials message. -->
+		<%
+			if(null!=request.getAttribute("invalid"))
+		    {
+		        out.println("<p id='error'></p>"+request.getAttribute("invalid"));
+		    }
+		%>
+		
+		<input type="submit" value="Login">
+		<a href="DoctorRegistration.jsp">Register</a>
+		
+<!-- 		Append Successfully registered message   -->
+		<%
+			if(null!=request.getAttribute("success"))
+		    {
+		        out.println("<p id='register-success'></p>"+request.getAttribute("success")+request.getAttribute("dname")+".");
+		    }
+		%>
+		
+	</form>
+	
+<!-- 	Form for Patient Booking -->
+	<form action="PatientNameMobile.jsp" method="post"> 
+		<h2>Patient's Booking</h2>
+		
+		<label for="name">Name</label>
+		<input type="text" id="name" name="name" placeholder="Enter your Name" autocomplete="off" required>
+		<label for="num">Mobile No.</label>
+		<input type="tel" id="num" name="num" placeholder="Enter your Number" autocomplete="off" required pattern="^\d{10}$" oninvalid="this.setCustomValidity('Enter Mobile Number')" oninput="this.setCustomVisibility('')">
+		
+<!-- 		Append the Appointment booked Message -->
+		<%
+			if(null!=request.getAttribute("booked"))
+		    {
+		        out.println("<p id='booked'></p>"+request.getAttribute("booked")+request.getAttribute("dname")+".");
+		    }
+		%>
+		
+		<input type="submit" value="Proceed">
+	</form>
 </body>
 </html>
